@@ -15,13 +15,13 @@ class Demoucron:
 
     def entrer(self, k):
         """
-        Récupération de la colonne k
+        Récupération des indices de la colonne k
         """
         return [i for i, elem in enumerate(self._matrice[:, k]) if self.valid_elem(elem)]
 
     def sortir(self, k):
         """
-        Récupération de la ligne k
+        Récupération des indices la ligne k
         """
         return [i for i, elem in enumerate(self._matrice[k]) if self.valid_elem(elem)]
 
