@@ -37,6 +37,10 @@ def valid_array(arr: np.ndarray, choice: str, i: int, invalid: Callable[[float],
         return np.all(np.isnan(arr))
 
 def not_reversed(graph: Graph, choice: str = Path(..., regex=f"^({MINIMISER}|{MAXIMISER})$")):
+    """
+    Éviter les reversements de la matrice
+    C-a-d si A vers B alors il n'y a pas B vers A
+    """
     try:
         matrix = np.array(graph.matrix, dtype=np.float64)
     except ValueError:
