@@ -36,10 +36,13 @@ def valid_array(arr: np.ndarray, choice: str, i: int, invalid: Callable[[float],
     else:
         return np.all(np.isnan(arr))
 
-def not_reversed(graph: Graph, choice: str = Path(..., regex="^(minimiser|maximiser)$")):
+def not_reversed(graph: Graph, choice: str = Path(..., regex=f"^({MINIMISER}|{MAXIMISER})$")):
     try:
         matrix = np.array(graph.matrix, dtype=np.float64)
     except ValueError:
+        raiseException()
+    
+    if matrix.shape[0] != matrix.shape[1]:
         raiseException()
     
     map: dict[str, list[int]] = dict()
