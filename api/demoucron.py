@@ -26,7 +26,7 @@ class Demoucron:
         return [i for i, elem in enumerate(self._matrice[k]) if self.valid_elem(elem)]
 
     def calculer(self):
-        for k in range(1, self.sommets):
+        for k in range(1, self.sommets-1):
             entrees = self.entrer(k)
             sorties = self.sortir(k)
             items: list[dict[str, int]] = []
