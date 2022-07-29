@@ -9,7 +9,7 @@ class Demoucron:
         self._origin = np.copy(matrice)
         self._matrice: np.ndarray[np.float64] = matrice
         self.valid_elem = Demoucron.notNan if choix == MINIMISER else Demoucron.greater
-        self.valeur = Demoucron.min_val if choix == MINIMISER else Demoucron.max_val
+        self.valeur = min if choix == MINIMISER else max
         self.choix = choix
         self.calculer()
 
@@ -29,6 +29,9 @@ class Demoucron:
         for k in range(1, self.sommets-1):
             entrees = self.entrer(k)
             sorties = self.sortir(k)
+            print(k, end='\n\n')
+            print(self._matrice,end='\n\n')
+            print(entrees, '-----', sorties, end='\n\n')
             items: list[dict[str, int]] = []
             for entree in entrees:
                 self.set_items(k, entree, sorties, items)
@@ -59,6 +62,11 @@ class Demoucron:
 
     @property
     def minimiser(self):
+        """
+        Récupérer le tableau de la colonne de line
+        Changer la valeur de line avec l'indice où
+        est le plus petit valeur de la colonne
+        """
         line = self.sommets-1
         paths: list[int] = []
         paths.append(line)
@@ -97,18 +105,6 @@ class Demoucron:
         if elem > 0:
             return True
         return False
-
-    @staticmethod
-    def max_val(val: np.float64, vecteur: np.float64):
-        if val > vecteur:
-            return val
-        return vecteur
-
-    @staticmethod
-    def min_val(val: np.float64, vecteur: np.float64):
-        if val < vecteur:
-            return val
-        return vecteur
 
     @property
     def sommets(self):
