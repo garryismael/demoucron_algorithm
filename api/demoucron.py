@@ -1,5 +1,4 @@
 import numpy as np
-from numpy import copy
 
 from api.constants import MINIMISER
 
@@ -7,7 +6,7 @@ from api.constants import MINIMISER
 class Demoucron:
     def __init__(self, matrice: np.ndarray, choix: str):
         self._origin = np.copy(matrice)
-        self._matrice: np.ndarray[np.float64] = matrice
+        self._matrice = matrice
         self.valid_elem = Demoucron.notNan if choix == MINIMISER else Demoucron.greater
         self.valeur = min if choix == MINIMISER else max
         self.choix = choix
@@ -29,9 +28,6 @@ class Demoucron:
         for k in range(1, self.sommets-1):
             entrees = self.entrer(k)
             sorties = self.sortir(k)
-            print(k, end='\n\n')
-            print(self._matrice,end='\n\n')
-            print(entrees, '-----', sorties, end='\n\n')
             items: list[dict[str, int]] = []
             for entree in entrees:
                 self.set_items(k, entree, sorties, items)
@@ -43,7 +39,7 @@ class Demoucron:
             sortie = item.get('sortie')
             distance = item.get('distance')
             self._matrice[entree, sortie] = distance
-        
+
     def set_items(self, k: int, entree: np.float64, sorties: list[np.float64], items: list[dict[str, int]]):
         entree_to_k = self._matrice[entree, k]
         for sortie in sorties:

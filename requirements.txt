@@ -1,4 +1,1 @@
-fastapi[all]
-coverage
-nose
 numpy

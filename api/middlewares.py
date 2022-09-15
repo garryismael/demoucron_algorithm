@@ -1,4 +1,5 @@
-from typing import Callable
+from ctypes import Union
+from typing import Callable, Optional
 
 import numpy as np
 from fastapi import Depends, HTTPException, Path, status
@@ -10,7 +11,7 @@ from api.utils import invalid_max, invalid_min
 
 
 class Graph(BaseModel):
-    matrix: list[list[float | None]]
+    matrix: list[list[Union[float,None]]]
 
 
 def raiseException():
