@@ -16,5 +16,4 @@ app.add_middleware(
 
 @app.post("/{choice}")
 def api(demoucron: Demoucron= Depends(valid_matrix)):
-    print(demoucron._origin)
     return demoucron.find_path()

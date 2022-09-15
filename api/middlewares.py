@@ -11,7 +11,7 @@ from api.utils import invalid_max, invalid_min
 
 
 class Graph(BaseModel):
-    matrix: list[list[Union[float,None]]]
+    matrix: list[list[Optional[float]]]
 
 
 def raiseException():
